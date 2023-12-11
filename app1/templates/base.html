@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%} {% endblock %}</title>
+    <!-- cdn bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- link css-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+
+    <!--Navbar-->
+
+    <nav class="navbar navbar-expand-lg nav-edit">
+        <div class="container-fluid">
+          <a class="navbar-brand nav-edit" href="{% url 'index' %}">PASSGEN</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link nav-edit" aria-current="page" href="{% url 'generator' %}">Generar Contraseñas</a>
+              </li>
+              
+            </ul>
+          </div>
+          <div class="ms-auto" id="navbarNav">
+            <ul class="navbar-nav">
+              {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link nav-edit" aria-current="page" href="{% url 'profile' %}">{{ user.username }}</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link nav-edit" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                  </li>
+              {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link nav-edit" aria-current="page" href="{% url 'register' %}">Sign Up</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link nav-edit" aria-current="page" href="{% url 'login' %}">Login</a>
+                  </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+              
+
+    {% comment %} {% include 'navbar.html' %} {% endcomment %}
+
+
+    {% block content %}
+    
+    {% endblock %}
+
+  <footer class="footer-edit mt-5">
+      <div class="container">
+          <div class="footer-info">
+              <h5>Creado por <span id="autor">Sebastian De La Jara Carrasco</span></h5>
+              <p>Contacto: <a href="https://www.linkedin.com/in/sebastiandelajarac/" target="_blank">Linkedin Profile</a></p>
+          </div>
+              <div class="footer-copyright">
+          </div>
+        </div>
+        <p>&copy; 2023 Mi Sitio Web. Todos los derechos reservados.</p>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <script src="{% static 'js/script.js' %}"></script>
+    
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

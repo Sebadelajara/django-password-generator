@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<main class="p-5 ma-5">
+<!--mensaje de error con el formulario-->
+ 
+{% if messages %}
+	{% for msg in messages %}
+
+		<div class="alert alert-warning alert-dismissible fade show container col-md-3 text-center mt-4" role="alert">
+		<strong>Ops</strong> {{ msg }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+
+	{% endfor %}
+{% endif %} 
+
+<!--formulario para editar las contraseñas y nombres-->
+<form action="{% url 'editpass' %}" method='post' class='p-4'>
+    {% csrf_token %}
+    
+
+    <input type="hidden"  name="id" value="{{pass_name.id}}">
+
+    <div class="container col-md-3 text-center">
+        <h2 class="pb-2" style="color:rgb(99, 99, 99)">Edita tu contraseña</h2>
+        <div class="input-group custom-input">
+    
+            <input name="name_password" type="text" class="form-control custom-input" placeholder="Nombre contraseña"
+                aria-label="Name password" aria-describedby="button-addon1" value="{{ pass_name.name_pw }}">
+        </div>
+        
+        <div class="input-group custom-input mt-3">
+    
+            <input name="password_add" type="text" class="form-control custom-input" placeholder="Tu contraseña"
+                aria-label="Otro campo" aria-describedby="button-addon2" value="{{ pass_name.password }}">
+        </div>
+    
+        <button class="btn btn-primary custom-button mt-3" type="submit" id="button-addon2">Guardar cambios</button>
+    </div>
+</form> 
+
+</main>
+
+{% endblock %}

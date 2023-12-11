@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!--titulo-->
+<div class="profile-banner p-4">
+    <div class="banner-text">
+        <h1 class="" style="color: rgb(87, 87, 87);">Hola! {{ user.username }}</h1>
+        <p class="" style="color: rgb(87, 87, 87);">Mi perfil</p>
+    </div>
+</div>
+
+<!--formulario para guardar contraseñas-->
+
+<form action='{% url 'addprofile' %}' method='POST'>
+  {% csrf_token %}
+    <div class="container col-md-4 col-sm-6 text-center">
+      <h2 class="pb-2 text-light">Agrega tus contraseña</h2>
+      <label for="name_password" class="text-light">Nombre de la contraseña</label>
+      <div class="input-group custom-input">
+        <input name="name_password" type="text" class="form-control custom-input" placeholder="Contraseña de netflix"
+              aria-label="Name password" aria-describedby="button-addon1" value="{{ password }}" required>
+      </div>
+      <label for="name_password" class="text-light mt-3">Tu contraseña</label>
+      <div class="input-group custom-input ">
+        <input name="new_password" type="text" class="form-control custom-input" placeholder="EJ: PasswordNetflix01"
+              aria-label="Otro campo" aria-describedby="button-addon2" value="{{ otro_valor }}" required>
+      </div>
+      <button class="btn btn-primary custom-button mt-3" type="submit" id="button-addon2">Agregar</button>
+    </div>
+</form> 
+    
+
+
+
+
+<!--Lista de contraseñas guardadas-->
+<div class="container p-5 col-md-8 col-sm-12">
+  <h2 class="pb-2 text-center text-light" >Mis Contraseñas</h2>
+    <div class="card card-body p-4 form-container table-pass table-responsive">
+        
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Contraseña</th>
+                    <th colspan="2">Acciones</th>
+    
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for i in perfil.password_set.all %}
+                <tr>
+                    
+                    <td>{{ i.name_pw}}</td>
+                    <td>{{ i.password }}</td>
+                    <th><a href="edit/{{i.id}}" class="btn btn-info">Editar</a></th>
+                    <th><a href="#exampleModal{{ i.id }}"  class="btn btn-danger" data-bs-toggle="modal">Eliminar</a></th>
+    
+    
+                </tr>
+    
+                <div class="modal fade" id="exampleModal{{ i.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ i.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel{{ i.id }}">Eliminar registro</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p class="text-light">Esta seguro que desea eliminar este registro?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO!</button>
+                          <a  href="delete/{{i.id}}" class="btn btn-danger">Eliminar</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                {% endfor %}
+        </table>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+
+
+
+
+<div class="container p-5 col-md-8 text-center">
+    <h1 class="text-light">Welcome to PASSGEN</h1>
+    <h4 class="text-light">Your Password Manager</h4>
+</div>
+
+    
+        
+
+</div>
+
+<div class="container p-2">
+    <div class="d-flex flex-row flex-wrap">
+        <!-- Tarjeta en español -->
+        <div class="card card-body colorFormu p-4 form-container m-4 col-md-4">
+            <h2 class="pb-2 text-center" style="color: rgb(206, 226, 231)">Cómo usar PASSGEN</h2>
+            <p>¡Bienvenido a "PASSGEN"! Esta aplicación está diseñada para ayudarte a generar y gestionar contraseñas seguras de una manera sencilla y segura. Ya sea que necesites contraseñas fuertes para tus cuentas en línea o simplemente desees organizar tus contraseñas personales, SecurePass es la herramienta perfecta para ti.</p>
+            <p>Sigue estos pasos para usar PASSGEN:</p>
+            <ol>
+                <li>Crea contraseñas seguras con un solo clic. Personaliza la longitud y complejidad de las contraseñas.</li>
+                <li>Crea una cuenta donde podrás gestionar tus contraseñas generadas y añadir tus propias contraseñas.</li>
+            </ol>
+            <div class="d-grid gap-2 my-2">
+                <a href="{% url 'generator' %}" class="btn btn-primary custom-button" role="button">Generador de contraseñas</a>
+            </div>
+        </div>
+
+        <!-- Tarjeta en inglés (Copia de la tarjeta en español) -->
+        <div class="card card-body colorFormu p-4 form-container m-4 col-md-4" id="card_en">
+            <h2 class="pb-2 text-center" style="color: rgb(206, 226, 231)">How to Use PASSGEN</h2>
+            <p>Welcome to "PASSGEN"! This application is designed to help you generate and manage secure passwords in a simple and secure way. Whether you need strong passwords for your online accounts or simply want to organize your personal passwords, SecurePass is the perfect tool for you.</p>
+            <p>Follow these steps to use PASSGEN:</p>
+            <ol>
+                <li>Create secure passwords with a single click. Customize the length and complexity of the passwords.</li>
+                <li>Create an account where you can manage your generated passwords and add your own passwords.</li>
+            </ol>
+            <div class="d-grid gap-2 my-2">
+                <a href="{% url 'generator' %}" class="btn btn-primary custom-button mt-4" role="button">Password Generator</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

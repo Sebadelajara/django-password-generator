@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="container p-5 col-md-4">
+    <form action="{% url 'pass' %}" id="formPassgen" class="card card-body colorFormu p-4 form-container ">
+        <h2 class="pb-2 text-center" style="color:rgb(206, 226, 231)">Generador de Contraseñas</h3>
+        <label for="lenght">Selecciona la longitud de tu contraseña</label>
+        <select name="lenght" id="lenght" class="form-control my-1">
+            <option value="6">6 Caracteres</option>
+            <option value="7">7 Caracteres</option>
+            <option value="8">8 Caracteres</option>
+            <option value="9">9 Caracteres</option>
+            <option value="10">10 Caracteres</option>
+            <option value="11">11 Caracteres</option>
+            <option value="12">12 Caracteres</option>
+            <option value="13">13 Caracteres</option>
+            <option value="14">14 Caracteres</option>
+        </select>
+        <div class="form-check form-switch my-2">
+            <label for="uppercase">Mayúsculas</label>
+            <input class="form-check-input" type="checkbox" name="uppercase" id="uppercase" role="switch">
+        </div>
+
+        <div class="form-check form-switch my-2">
+            <label for="special">Caracteres especiales</label>
+            <input class="form-check-input" type="checkbox" name="special" id="special">
+        </div>
+
+        <div class="form-check form-switch my-2">
+            <label for="number">Números</label>
+            <input class="form-check-input" type="checkbox" name="number" id="number">
+        </div>
+
+        <div class="d-grid gap-2 my-2">
+            <button class="btn btn-primary custom-button" type="submit">Generar contraseña</button>
+        </div>
+
+    </form>
+</div>
+
+<div class="container col-md-3 text-center mb-4 ">
+    <h3 class="pb-2" style="color:rgb(99, 99, 99)">Contraseña generada</h3>
+    <div class="input-group custom-input">
+        <input type="text" class="form-control custom-input" placeholder="Tu contraseña aparecera aqui"
+            aria-label="Recipient's username" aria-describedby="button-addon2" value="{{ password }}">
+        <button class="btn btn-outline-secondary custom-input" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#modalAgregarContrasena">Agregar</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal para agregar contraseña -->
+
+{% if user.is_authenticated %}
+
+<!-- modal logeados-->
+
+<div class="modal fade" id="modalAgregarContrasena" tabindex="-1" aria-labelledby="modalAgregarContrasenaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarContrasenaLabel">Agregar Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'add_pass' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombreContrasena" class="form-label text-light">Nombre de la Contraseña</label>
+                        <input type="text" class="form-control" id="nombreContrasena" name="name_password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contrasena" class="form-label text-light">Contraseña</label>
+                        <input type="text" class="form-control" id="contrasena" name="new_password" value="{{ password }}" readonly>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Contraseña</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+
+{% else %}
+
+<!-- modal NO logeados-->
+
+<div class="modal fade" id="modalAgregarContrasena" tabindex="-1" aria-labelledby="modalAgregarContrasenaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class=" colorFormu p-4 ">
+
+                        <div class="pb-2 text-center">
+                            <p><i class="fas fa-exclamation-triangle"></i> Debes iniciar sesión para acceder a esta función</p>
+                        </div>
+
+
+                        <div class="d-grid gap-2 my-4">
+                            <a href="{% url 'login' %}" class="btn btn-primary custom-button" role="button">Login</a>
+                        </div>
+
+                        <div class="d-grid gap-2 my-4">
+                            <a href="{% url 'signup' %}" class="btn btn-primary custom-button" role="button">SignUp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                   
+                    
+                    
+
+                    
+                    
+{% endif %}
+
+
+
+{% endblock %}

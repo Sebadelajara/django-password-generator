@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %} Registration {% endblock %}
+
+{% block content %}
+
+
+
+ 
+        
+
+
+<!--Mensaje de validacion -->	
+{% if messages %}
+	{% for msg in messages %}
+
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>Ops</strong> {{ msg }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+
+	{% endfor %}
+{% endif %}    
+
+<!--Formulario registro nuevo usuario -->	
+<div class="container col-md-4 pt-5 ">
+    <form action="{% url 'signup' %}" method='post' id="formsignup" class="card card-body colorFormu pt-4 form-container ">
+        <h2 class="pb-2 text-center" style="color:rgb(206, 226, 231)">Completa tu registro</h2>
+        {% csrf_token %}
+        
+
+
+        
+        <!--grupo usuario-->
+        <div class="mb-3 form-grupo" id="grupo-usuario">
+          <label for="username" class="form-label">Nombre usuario</label>
+          <div class="form-grupo-input ">
+          <input type="text" name='username' minlength="6" maxlength="30" class="claseinput" id="username" placeholder="Usuario23" required>
+          <i class="form-validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario-input-error">El usuario debe tener entre 4 y 16 caracteres y solo puede contener letras, números, guiones bajos y guiones.</p>
+        </div>
+		
+
+        <!--grupo firstname-->
+        <div class="mb-3 form-grupo" id="grupo-firstname">
+          <label for="firstname" class="form-label">Nombre</label>
+          <div class="form-grupo-input">
+          <input type="text" name='firstname' minlength='3' maxlength='30' class="claseinput" id="firstname" placeholder="Mi nombre" required>
+          <i class="form-validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario-input-error">Ingrese un nombre válido.</p>
+        </div>
+		
+
+
+        <!--grupo lastname-->
+        <div class="mb-3 form-grupo" id="grupo-lastname">
+          <label for="lastname" class="form-label">Apellido</label>
+          <div class="form-grupo-input">
+          <input type="text" name='lastname' minlength='3' maxlength='50' class="claseinput" id="lastname" placeholder="Mi apellido" required>
+          <i class="form-validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario-input-error">Ingrese un apellido válido.</p>
+        </div>
+		
+
+
+        <!--grupo password-->
+        <div class="mb-3 form-grupo" id="grupo-password">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="form-grupo-input">
+          <input type="password" name='password' class="claseinput" id="password" placeholder="Micontraseña23" required>
+          <i class="form-validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario-input-error">La contraseña debe tener entre 4 y 12 caracteres e incluir al menos una letra mayúscula, una letra minúscula y un número.</p>
+        </div>
+
+
+        <!--grupo confirm-password-->
+        <div class="mb-3 form-grupo" id="grupo-confirm-password">
+          <label for="confirm_password" class="form-label">Confirma contraseña</label>
+          <div class="form-grupo-input">
+          <input type="password" name='confirm_password' class="claseinput" id="confirm_password" placeholder="Micontraseña23" required>
+          <i class="form-validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario-input-error">Las contraseñas deben coincidir.</p>
+        </div>
+		
+
+
+        <!--grupo email-->
+        <div class="mb-3 form-grupo" id="grupo-email">
+          <label for="email" class="form-label">Correo electronico</label>
+          <div class="form-grupo-input">
+              <input type="email" name='email' class="claseinput"  id="email" placeholder="micorreo@correo.com"  required>
+              <i class="form-validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario-input-error">Ingrese una dirección de correo electrónico válida.</p>
+        </div>
+		
+
+        <!--grupo terminos-->
+        <div class="form-grupo" id="grupo__terminos">
+          <label class="form-label">
+            <input class="form-checkbox" type="checkbox" name="terminos" id="terminos" required>
+            Acepto los Terminos y Condiciones
+          </label>
+        </div>
+  
+        <div class="form-mensaje" id="form-mensaje">
+          <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+        </div>
+    
+        <button type="submit" class="btn btn-primary custom-button mt-4">Crear cuenta</button>
+
+    </form>
+  </div>
+
+
+
+
+<!--FORMULARIO PRUEBA -->
+
+
+
+
+{% endblock %}
