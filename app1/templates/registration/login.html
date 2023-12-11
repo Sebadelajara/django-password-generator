@@ -3,7 +3,7 @@
 
 {% block content %}
 
-
+<!--mensaje de exito o error al logearse-->
 <div class="container p-5 col-md-4">
   {% if 'ok' in request.GET %}
 
@@ -18,8 +18,7 @@
     Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.
   </div>
   {% endif %}
-
-
+<!--formulario de login-->
     <form action="" method='post' class="card card-body colorFormu p-4 form-container">
         <h2 class="pb-2 text-center" style="color:rgb(206, 226, 231)">Login</h2>
         {% csrf_token %}

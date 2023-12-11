@@ -19,6 +19,8 @@ def index(request):
 def generator(request):
     return render(request, 'generator.html')
 
+# vista para generar la contraseña
+
 
 def passgen(request):
     lenght = int(request.GET.get('lenght'))
@@ -42,6 +44,8 @@ def passgen(request):
 
 def register(request):
     return render(request, 'register.html')
+
+# vista que maneja el registro de nuevo usuario
 
 
 def signup(request):
@@ -107,6 +111,8 @@ def signup(request):
 
     return render(request, 'register.html')
 
+# vista de la pagina de perfil del usuario
+
 
 @login_required
 def profile(request):
@@ -125,16 +131,22 @@ def profile(request):
     return render(request, 'profile.html', {'perfil': perfil, 'contraseñas': contraseñas})
 
 
+# vista para eliminar password de la lista de usuario
+@login_required
 def delete(request, id):
     pass_delete = Password.objects.get(id=id)
     pass_delete.delete()
     return redirect('profile')
 
 
+# vista que devuelve la pagina para editar un registro de password con us id correspondiente
+@login_required
 def edit(request, id):
     pass_name = Password.objects.get(id=id)
 
     return render(request, 'edit.html', {'pass_name': pass_name})
+
+# vista recibe el form para editar la password
 
 
 @login_required
@@ -156,6 +168,8 @@ def editpass(request):
 
     return redirect('profile')
 
+# vista para agregar password generadas por la appweb.
+
 
 @login_required
 def add_pass(request):
@@ -174,6 +188,8 @@ def add_pass(request):
                 return redirect('profile')
 
     return HttpResponseBadRequest('Error en la solicitud')
+
+# agrega una password "x" a mi lista de passwords.
 
 
 @login_required

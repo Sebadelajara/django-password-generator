@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+# modelo que extiende la tabla user de django, relacion onetoone
+
 
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -12,6 +14,8 @@ class Perfil(models.Model):
 
     def __str__(self) -> str:
         return f'user= {self.user},name= {self.name}, apellido= {self.lastname} '
+
+# modelo para la tabla contraseñcon relacion a Perfil
 
 
 class Password(models.Model):
