@@ -33,33 +33,37 @@ Proyecto simple construido con **Django** que permite generar contraseñas segur
    cd django-password-generator
    
 2. Crea un entorno virtual:
-   
-python -m venv env
-source env/bin/activate  # En Windows: env\Scripts\activate
+
+    ```bash 
+    python -m venv env
+    source env/bin/activate  # En Windows: env\Scripts\activate
 
 3. Instala las dependencias:
-   
-pip install -r requirements.txt
+
+    ```bash 
+    pip install -r requirements.txt
 
 4. Ejecuta el servidor:
 
-python manage.py runserver
+    ```bash
+    python manage.py runserver
 
 5. Abre tu navegador en http://127.0.0.1:8000
 
+
 📁 Estructura del proyecto
 
-django-password-generator/
-│
-├── generator/          # App principal
-│   ├── templates/      # Plantillas HTML
-│   └── views.py        # Lógica del generador
-│
-├── password_generator/ # Configuración del proyecto Django
-│
-├── static/             # Archivos CSS/JS estáticos
-├── db.sqlite3          # Base de datos SQLite
-└── manage.py           # Script de administración
+    django-password-generator/
+    │
+    ├── generator/          # App principal
+    │   ├── templates/      # Plantillas HTML
+    │   └── views.py        # Lógica del generador
+    │
+    ├── password_generator/ # Configuración del proyecto Django
+    │
+    ├── static/             # Archivos CSS/JS estáticos
+    ├── db.sqlite3          # Base de datos SQLite
+    └── manage.py           # Script de administración
 
 
 👨‍💻 Autor
